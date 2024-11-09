@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9145770658356337141}
   - component: {fileID: 6696308774188219377}
   - component: {fileID: 7191828708837324070}
+  - component: {fileID: -3985967858466321349}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: PROJECTILE
@@ -120,3 +121,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.6, y: 0.8}
   m_Direction: 1
+--- !u!95 &-3985967858466321349
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948902605563772232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2216a07adddae4cf792492157b6ffa0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

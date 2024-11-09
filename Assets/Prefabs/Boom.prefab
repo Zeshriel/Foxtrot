@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3056309241668452330}
   - component: {fileID: 3364594010160569078}
   - component: {fileID: 9123924580310010438}
+  - component: {fileID: 4921478553297834143}
   m_Layer: 0
   m_Name: Boom
   m_TagString: PROJECTILE
@@ -120,3 +121,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.65, y: 0}
   m_Size: {x: 2.3, y: 1.5}
   m_Direction: 1
+--- !u!95 &4921478553297834143
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202704121972132543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfa1f197800da41f29dee560ee391cae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
