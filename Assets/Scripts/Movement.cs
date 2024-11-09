@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
     public float runSpeed;
     public float jumpSpeed;
     Rigidbody2D myBod;
+    Text gameOverTxt;
     bool isLeft;
     bool isGrounded;
 
@@ -15,6 +18,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         myBod = GetComponent<Rigidbody2D>();
+        gameOverTxt = GameObject.Find("GameOver").GetComponent<Text>();
+        gameOverTxt.text = "";
         isLeft = false;
         isGrounded = false;
     }
@@ -47,6 +52,11 @@ public class Movement : MonoBehaviour
             transform.position += Vector3.up * runSpeed * Time.deltaTime;
         }
 
+        if(Input.GetButtonDown("Jump") && Time.timeScale == 0){
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,6 +65,14 @@ public class Movement : MonoBehaviour
         //Do Stuff
         if(otherGO.name.Contains("Wall")){
             isGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider){
+        GameObject otherGo = collider.gameObject;
+        if(otherGo.tag == "PROJECTILE"){
+            gameOverTxt.text = "Game Over!";
+            Time.timeScale = 0;
         }
     }
 
