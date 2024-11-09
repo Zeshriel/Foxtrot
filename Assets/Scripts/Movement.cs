@@ -1,25 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float initialSpeed = 2f;
-    public float acceleration = 0.01f; // Slow acceleration over time
-    private float currentSpeed;
-    private Rigidbody2D myBod;
+    public float runSpeed;
+    public float jumpSpeed;
+    Rigidbody2D myBod;
+    bool isLeft;
+    bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
         myBod = GetComponent<Rigidbody2D>();
-        currentSpeed = initialSpeed; // Set the initial speed
+        isLeft = false;
+        isGrounded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentSpeed += acceleration * Time.deltaTime; // Gradually increase speed
-        myBod.velocity = new Vector2(0, currentSpeed); // Apply the current speed as the y-velocity
+
+        if(Input.GetButtonDown("Jump") && isGrounded && !isLeft){
+            isGrounded = false;
+            isLeft = true;
+            myBod.rotation *= -1;
+        }
+        if(Input.GetButtonDown("Jump") && isGrounded && isLeft){
+            isGrounded = false;
+            isLeft = false;
+            myBod.rotation *= -1;
+        }
+
+        if(!isLeft && !isGrounded){
+            transform.position += (Vector3.right * jumpSpeed * Time.deltaTime + Vector3.up * runSpeed * Time.deltaTime);
+        }
+        if(isLeft && !isGrounded){
+            transform.position += (Vector3.left * jumpSpeed * Time.deltaTime + Vector3.up * runSpeed * Time.deltaTime);
+        }
+        if(!isLeft && isGrounded){
+            transform.position += Vector3.up * runSpeed * Time.deltaTime;
+        }
+        if(isLeft && isGrounded){
+            transform.position += Vector3.up * runSpeed * Time.deltaTime;
+        }
+
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject otherGO = collision.gameObject;
+        //Do Stuff
+        if(otherGO.name.Contains("Wall")){
+            isGrounded = true;
+        }
+    }
+
 }

@@ -20,8 +20,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 targetPos = new Vector3(transform.position.x, target.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPos, 0.2f);
+        transform.position += GameObject.Find("Player").GetComponent<Movement>().runSpeed * Vector3.up * Time.deltaTime;
 
         // Handle left wall backgrounds
         if (transform.position.y >= bg2.position.y)
