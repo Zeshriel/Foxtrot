@@ -27,16 +27,24 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Touch[] fingers = Input.touches;
 
-        if(Input.GetButtonDown("Jump") && isGrounded && !isLeft){
-            isGrounded = false;
-            isLeft = true;
-            myBod.rotation *= -1;
-        }
-        if(Input.GetButtonDown("Jump") && isGrounded && isLeft){
-            isGrounded = false;
-            isLeft = false;
-            myBod.rotation *= -1;
+        if(fingers.Length > 0){
+            Touch t = fingers[0];
+            if(t.phase == TouchPhase.Began && isGrounded && !isLeft){
+                isGrounded = false;
+                isLeft = true;
+                myBod.rotation *= -1;
+            }
+            if(t.phase == TouchPhase.Began && isGrounded && isLeft){
+                isGrounded = false;
+                isLeft = false;
+                myBod.rotation *= -1;
+            }
+            if(t.phase == TouchPhase.Began && Time.timeScale == 0){
+                SceneManager.LoadScene(0);
+                Time.timeScale = 1;
+            }
         }
 
         if(!isLeft && !isGrounded){
@@ -52,10 +60,7 @@ public class Movement : MonoBehaviour
             transform.position += Vector3.up * runSpeed * Time.deltaTime;
         }
 
-        if(Input.GetButtonDown("Jump") && Time.timeScale == 0){
-            SceneManager.LoadScene(0);
-            Time.timeScale = 1;
-        }
+        
 
     }
 
